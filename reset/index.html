@@ -7,163 +7,203 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        margin: 0; padding: 0; box-sizing: border-box;
-        font-family: 'Outfit', sans-serif;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
 
-    html, body {
-        height: 100%;
-        overflow: hidden; /* no scroll */
-    }
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+    background: #000 !important; /* background hitam */
+    color: #ccc;
+}
 
-    body {
-        background: linear-gradient(135deg, #0036b1, #0090ff);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 25px;
-    }
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
-    /* Mobile => background putih */
-    @media(max-width: 768px){
-        body { background: #fff !important; }
-    }
+.reset-box {
+    width: 100%;
+    max-width: 380px;
+    background: #111; /* panel gelap */
+    border-radius: 22px;
+    padding: 35px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+    animation: fadeSlide 0.5s ease both;
+    text-align: center;
+}
 
-    .box {
-        width: 100%;
-        max-width: 380px;
-        background: rgba(255,255,255,0.16);
-        padding: 35px;
-        border-radius: 22px;
-        backdrop-filter: blur(12px);
-        animation: fadeSlide 0.5s ease;
+@media(min-width: 1024px){
+    .reset-box {
+        max-width: 460px;
+        padding: 45px;
     }
+}
 
-    /* Mobile box putih */
-    @media(max-width: 768px){
-        .box {
-            background: #fff;
-            backdrop-filter: none;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.08);
-        }
-    }
+@keyframes fadeSlide {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
 
-    @keyframes fadeSlide {
-        from { opacity: 0; transform: translateY(25px); }
-        to   { opacity: 1; transform: translateY(0); }
-    }
+.logo {
+    display: block;
+    width: 80px;
+    margin: 0 auto 15px auto;
+    border-radius: 14px;
+}
 
-    h2 {
-        text-align: center;
-        margin-bottom: 10px;
-        color: #fff;
-        font-weight: 600;
-    }
+h2 {
+    color: #fff;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
 
-    p {
-        text-align: center;
-        font-size: 14px;
-        color: #eaeaea;
-        margin-bottom: 25px;
-    }
+.input-field {
+    width: 100%;
+    margin-bottom: 12px;
+    text-align: left;
+}
 
-    @media(max-width: 768px){
-        h2 { color: #000; }
-        p  { color: #555; }
-    }
+label {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 6px;
+    display: block;
+}
 
-    input {
-        width: 100%;
-        padding: 13px;
-        font-size: 15px;
-        border: 1.6px solid #ccc;
-        border-radius: 14px;
-        outline: none;
-        transition: 0.2s;
-    }
+input {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: 14px;
+    border: 1.6px solid #333;
+    font-size: 15px;
+    background: #222;
+    color: #fff;
+    transition: .2s;
+}
 
-    input:focus {
-        border-color: #0077ff;
-    }
+input:focus {
+    background: #333;
+    border-color: #555;
+    outline: none;
+}
 
-    .error {
-        color: #ff2b2b;
-        font-size: 13px;
-        margin-top: 5px;
-        margin-bottom: 10px;
-    }
+.error {
+    font-size: 13px;
+    color: #FF010D;
+    margin-top: 3px;
+    margin-bottom: 8px;
+}
 
-    button {
-        width: 100%;
-        padding: 13px;
-        border-radius: 14px;
-        border: none;
-        background: #0077ff;
-        color: #fff;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 10px;
-        font-weight: 600;
-        transition: .2s;
-    }
+.top-error {
+    color: #FF010D;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+    display: none;
+}
 
-    button:hover {
-        background: #005fcc;
-    }
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 14px;
+    background: #9C89F8; /* tombol pink */
+    color: #fff;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s, box-shadow 0.2s;
+}
 
-    .back {
-        text-align: center;
-        margin-top: 15px;
-    }
+button:hover {
+    background: #9C89F8;
+    
+}
 
-    .back a {
-        text-decoration: none;
-        color: #0077ff;
-        font-size: 14px;
-        font-weight: 500;
-    }
+button:active {
+    outline: 2px solid #fff !important;
+    outline-offset: 2px;
+}
+
+.back {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back a {
+    color: #Fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 6px;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.back a:hover {
+    color: #fff;
+}
+
+.back a:active {
+    outline: 2px solid #FFf !important;
+    outline-offset: 3px;
+    border-radius: 10px;
+}
 </style>
 </head>
 
 <body>
 
-<div class="box">
-    <h2>Forgot Your Password?</h2>
-    <p>Enter your email address and we will send you instructions to reset your password.</p>
+<div class="reset-box">
 
-    <input type="email" id="email" placeholder="Email address">
-    <div id="emailErr" class="error"></div>
+    <img src="https://i.imgur.com/Y3G0RYc.png" class="logo">
 
-    <button onclick="resetPass()">Continue</button>
+    <h2>Forgot your password?</h2>
+
+    <div id="topError" class="top-error">
+        Email address not found. Please contact <b>dynoticmusic@gmail.com</b>.
+    </div>
+
+    <div class="input-field">
+        <label>Email Address</label>
+        <input type="email" id="email">
+        <div id="emailError" class="error"></div>
+    </div>
+
+    <button onclick="sendReset()">Send</button>
 
     <div class="back">
-        <a href="index.html">Back to Login</a>
+        <a href="../login">Back to Login</a>
     </div>
+
 </div>
 
 <script>
-function resetPass() {
+function sendReset() {
     let email = document.getElementById("email").value.trim();
-    let emailErr = document.getElementById("emailErr");
+    let emailError = document.getElementById("emailError");
+    let topError = document.getElementById("topError");
 
-    emailErr.textContent = "";
+    emailError.textContent = "";
+    topError.style.display = "none";
 
     if (email === "") {
-        emailErr.textContent = "Please enter an email address";
+        emailError.textContent = "Please enter your email address";
         return;
     }
 
-    // REGEX cek email valid
-    let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!pattern.test(email)) {
-        emailErr.textContent = "Email Invalid";
-        return;
-    }
-
-    // sukses (nanti bisa dihubungkan ke backend)
-    alert("Reset link has been sent! (demo)");
+    // ALWAYS FAIL demo
+    topError.style.display = "block";
 }
 </script>
 
