@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefanie - Dynotic Music FAQ</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Outfit",sans-serif;}
+html,body{
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  color:#f5f3ff;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(130,60,255,0.08), transparent 65%),
+    radial-gradient(circle at 80% 70%, rgba(150,70,255,0.06), transparent 70%),
+    #000;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+  overflow-x:hidden;
+}
+
+/* FADE-IN GLOBAL */
+.fade-in{
+  opacity:0;
+  transform:translateY(15px);
+  animation:fadeInUp 0.5s ease forwards;
+}
+@keyframes fadeInUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Profile Header */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 15px;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter:blur(10px);
+  border-radius:0 0 15px 15px;
+  z-index:10;
+}
+header img{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid #fff;
+}
+header .info{
+  flex:1;
+  margin-left:10px;
+}
+header .info .name{
+  font-weight:600;
+  font-size:1rem;
+  color:#fff;
+  text-shadow:0 0 8px #fff,0 0 12px #fff;
+}
+header .info .status{
+  font-size:0.8rem;
+  color:#fff;
+  text-shadow:0 0 6px #fff;
+}
+header .actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+}
+header .actions .icon-btn{
+  background:transparent;
+  border:none;
+  cursor:pointer;
+  padding:5px;
+  position:relative;
+}
+header .actions .icon-btn img{
+  width:28px;
+  height:28px;
+  filter: drop-shadow(0 0 6px #fff);
+}
+header .actions #notif{
+  position:absolute;
+  top:110%;
+  left:35%;
+  transform:translateX(-50%);
+  background:rgba(0,0,0,0.7);
+  padding:3px 6px;
+  border-radius:6px;
+  font-size:0.65rem;
+  display:none;
+  white-space:nowrap;
+  z-index:20;
+}
+
+/* Chat Container */
+.chat-container{
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(5px);
+  padding:15px;
+  margin:10px;
+  border-radius:15px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  position:relative;
+  border:1px solid rgba(255,255,255,0.2);
+  padding-bottom:180px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+.chat-container::-webkit-scrollbar{width:6px;}
+.chat-container::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:3px;}
+.chat-container::-webkit-scrollbar-track{background:transparent;}
+
+/* Bubble */
+.chat-bubble{
+  max-width:70%;
+  padding:10px 14px;
+  border-radius:20px;
+  font-size:0.95rem;
+  word-wrap:break-word;
+  display:flex;
+  gap:8px;
+  align-items:flex-end;
+  line-height:1.4rem;
+  animation: fadeIn 0.25s ease;
+}
+.stefanie{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(5px);
+  color:#fff;
+  border-top-left-radius:0;
+  justify-content:flex-start;
+}
+.user{
+  background:#2563eb;
+  color:#fff;
+  align-self:flex-end;
+  border-top-right-radius:0;
+  justify-content:flex-end;
+}
+
+/* Bubble Animation */
+.bubble-in{
+  opacity:0;
+  transform: scale(0.95);
+  animation: bubbleFadeIn 0.35s forwards;
+}
+@keyframes bubbleFadeIn{
+  to {opacity:1; transform:scale(1);}
+}
+@keyframes fadeIn{
+  from {opacity:0; transform:translateY(5px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* Question Area */
+#questionArea{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px) saturate(180%);
+  border-top:1px solid rgba(255,255,255,0.3);
+  padding:12px 10px;
+  box-shadow:0 -4px 20px rgba(255,255,255,0.15), 0 -2px 8px rgba(0,0,0,0.2);
+  display:flex;
+  gap:10px;
+  z-index:10;
+  border-radius:15px 15px 0 0;
+  overflow-x:auto;
+}
+#questionSlider{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width: thin;
+}
+#questionSlider::-webkit-scrollbar{
+  height:6px;
+}
+#questionSlider::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.3);
+  border-radius:3px;
+}
+#questionSlider::-webkit-scrollbar-track{
+  background: transparent;
+}
+.questionItem{
+  flex:0 0 auto;
+  background:rgba(255,255,255,0.15);
+  padding:8px 14px;
+  border-radius:14px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:all 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.questionItem:hover{
+  background:rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+.questionItem:active{
+  background:rgba(255,255,255,0.4);
+  transform: scale(0.98);
+}
+</style>
+</head>
+<body class="fade-in">
+
+<header class="fade-in" style="animation-delay:0.1s;">
+  <img src="https://i.imgur.com/nQNpS3C.gif" alt="Stefanie Avatar">
+  <div class="info">
+    <div class="name">Stefanie</div>
+    <div class="status">Online</div>
+  </div>
+  <div class="actions">
+    <div id="notif">Not Available</div>
+    <button class="icon-btn" onclick="notAvailable('Phone')">
+      <img src="https://i.imgur.com/ew5pIFP.png" alt="Phone">
+    </button>
+  </div>
+</header>
+
+<div class="chat-container fade-in" style="animation-delay:0.2s;" id="chatContainer"></div>
+
+<div id="questionArea" class="fade-in" style="animation-delay:0.3s;">
+  <div id="questionSlider">
+    <div class="questionItem">What is Dynotic Music?</div>
+    <div class="questionItem">What services are offered?</div>
+    <div class="questionItem">How much does it cost?</div>
+    <div class="questionItem">How do I create a release?</div>
+    <div class="questionItem">How does YouTube Content ID work?</div>
+    <div class="questionItem">How is the revenue split?</div>
+    <div class="questionItem">What is YouTube Music?</div>
+    <div class="questionItem">Why do songs appear on different channels?</div>
+    <div class="questionItem">Can release metadata be deleted?</div>
+    <div class="questionItem">How long does approval take?</div>
+    <div class="questionItem">When does music go live on platforms?</div>
+    <div class="questionItem">When will I get paid?</div>
+  </div>
+</div>
+
+<script>
+function notAvailable(feature){
+  const notif = document.getElementById('notif');
+  notif.style.display='block';
+  notif.innerText = 'Not Available';
+  setTimeout(()=>{notif.style.display='none';},2000);
+}
+
+const chatContainer = document.getElementById('chatContainer');
+
+const messages = {
+  "What is Dynotic Music?": "Dynotic Music is an independent music label that helps musicians distribute, monetize, and promote their work globally.",
+  "What services are offered?": "Dynotic Music provides digital music distribution services to platforms like Spotify, Apple Music, YouTube Music, Deezer, and more.",
+  "How much does it cost?": "Joining Dynotic Music is free and open to everyone worldwide without registration fees or regional limitations.",
+  "How do I create a release?": "To release music, just go to the 'Release' menu and follow the upload steps.",
+  "How does YouTube Content ID work?": "Dynotic Music registers your songs with YouTube Content ID. The system detects if your song is used in other videos, claims it, and collects ad revenue for you.",
+  "How is the revenue split?": "Dynotic Music revenue split is 80% to the artist and 20% to Dynotic Music. For 'Cover to Master' releases, the split is 65% to the artist and 35% to the label.",
+  "What is YouTube Music?": "YouTube Music is YouTube's streaming platform. Your songs appear as auto-generated videos with cover art and audio, generating ad revenue.",
+  "Why do songs appear on different channels?": "YouTube Music may display songs on 'Various Artists – Topic', '[Artist Name] – Topic', or your personal channel if connected.",
+  "Can release metadata be deleted?": "Yes, you can request metadata deletion or updates through the Dynotic Music team.",
+  "How long does approval take?": "Approval usually takes about 1 week. Reply to confirmation emails completely to speed up the process.",
+  "When does music go live on platforms?": "Once approved, releases are sent to music stores within 2–7 business days depending on the platform. Set release dates 1–3 weeks ahead for synchronized launches.",
+  "When will I get paid?": "Payment reports are available around the 25th of each month, and revenue is sent according to the payment schedule."
+};
+
+function addBubble(message,type,withTransition=false){
+  const bubble = document.createElement('div');
+  bubble.classList.add('chat-bubble',type==='stefanie' ? 'stefanie' : type);
+  if(withTransition) bubble.classList.add('bubble-in');
+  const span = document.createElement('span');
+  span.innerText=message;
+  bubble.appendChild(span);
+  chatContainer.appendChild(bubble);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Initial message
+window.addEventListener('DOMContentLoaded', ()=>{
+  addBubble("Hi, I'm Stefanie! What would you like to ask?", 'stefanie', true);
+});
+
+// Click questions
+document.querySelectorAll('.questionItem').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const question = item.innerText;
+    addBubble(question,'user');
+    setTimeout(()=>{
+      addBubble(messages[question],'stefanie',true);
+    },400);
+  });
+});
+</script>
+
+</body>
+                                </html>
